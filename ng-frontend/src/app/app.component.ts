@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ng-frontend';
+
+  private isNavCollapsed: boolean = true;
+
+  toggleNavCollapsed(): void {
+    this.isNavCollapsed = !this.isNavCollapsed
+  }
+
+  getNavCollapsed(): boolean {
+    return this.isNavCollapsed;
+  }
 }

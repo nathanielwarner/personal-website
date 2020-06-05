@@ -1,7 +1,7 @@
 FROM node:12
 RUN npm install -g @angular/cli
-WORKDIR /usr/src/app
+WORKDIR /application/ng-frontend
 COPY package*.json ./
 RUN npm install
-CMD ["ng", "build", "--watch", "--configuration=production"]
-
+COPY . .
+RUN ng build --configuration=production

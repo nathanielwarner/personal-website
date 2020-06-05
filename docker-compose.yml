@@ -5,16 +5,12 @@ services:
   ng-app:
     build: ng-frontend
     volumes:
-      - ./ng-frontend:/usr/src/app
-      - ng-dist:/usr/src/app/dist/ng-frontend
-      - /usr/src/app/node_modules
+      - ng-dist:/application/ng-frontend/dist/ng-frontend
 
   express:
     build: express-server
     volumes:
-      - ./express-server:/usr/src/app
-      - ng-dist:/usr/src/app/ng-dist
-      - /usr/src/app/node_modules
+      - ng-dist:/application/ng-frontend/dist/ng-frontend
     ports:
       - "3000:3000"
     depends_on:

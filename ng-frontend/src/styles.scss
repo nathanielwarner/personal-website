@@ -4,9 +4,9 @@
 @import '~bootstrap/scss/bootstrap';
 
 h1, h2, h3, h4 {
-  font-family: $font-family-monospace,
+  font-family: $font-family-monospace;
 }
 
-h4 a, h4 a:hover {
-  color: $black,
+.big-icon {
+  min-width: 100%;
 }

@@ -12,6 +12,7 @@ import { IconsModule } from "./icons/icons.module";
 import { SingleProjectComponent } from './single-project/single-project.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SingleExperienceComponent } from './single-experience/single-experience.component';
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { SingleExperienceComponent } from './single-experience/single-experience
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    IconsModule
+    IconsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

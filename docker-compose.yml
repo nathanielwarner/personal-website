@@ -7,6 +7,17 @@ services:
     volumes:
       - ng-dist:/application/ng-frontend/dist/ng-frontend
 
+  database:
+    image: 'mongo:4.2.7'
+    environment:
+      - MONGO_INITDB_DATABASE=test-db
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - /data/db
+    ports:
+      - "27017-27019:27017-27019"
+
   express:
     build: express-server
     volumes:
@@ -15,6 +26,7 @@ services:
       - "3000:3000"
     depends_on:
       - "ng-app"
+      - "database"
 
 volumes:
   ng-dist:

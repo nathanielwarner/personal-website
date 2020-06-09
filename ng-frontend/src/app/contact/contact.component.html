@@ -35,10 +35,13 @@
           <button class="btn btn-primary" type="submit">Submit</button>
         </div>
       </div>
-      <div *ngIf="submissionAttempted && submissionSuccessful" class="alert alert-success">
+      <div *ngIf="submissionStatus == subStatType.InProgress" class="alert alert-info">
+        Submitting form...
+      </div>
+      <div *ngIf="submissionStatus == subStatType.Succeeded" class="alert alert-success">
         Successfully submitted form
       </div>
-      <div *ngIf="submissionAttempted && !submissionSuccessful" class="alert alert-danger">
+      <div *ngIf="submissionStatus == subStatType.Failed" class="alert alert-danger">
         Failed to submit form
       </div>
     </form>

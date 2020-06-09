@@ -3,6 +3,7 @@ import { NgForm } from "@angular/forms";
 
 import { ContactSubmissionService } from "../contact-submission.service";
 import { ContactSubmission } from "../contact-submission";
+import { SubmissionStatus } from "../submission-status.enum";
 
 @Component({
   selector: 'app-contact',
@@ -11,8 +12,9 @@ import { ContactSubmission } from "../contact-submission";
 })
 export class ContactComponent implements OnInit {
 
-  submissionAttempted: boolean = false;
-  submissionSuccessful: boolean = false;
+  subStatType = SubmissionStatus
+
+  submissionStatus: SubmissionStatus = SubmissionStatus.None;
 
   constructor(private contactSubmissionService: ContactSubmissionService) {}
 
@@ -20,6 +22,7 @@ export class ContactComponent implements OnInit {
 
   submitForm(f: NgForm) {
     if (f.valid) {
+      this.submissionStatus = SubmissionStatus.InProgress;
       this.contactSubmissionService.submit({
         name: f.value.nameInput as string,
         email: f.value.emailInput as string,
@@ -27,12 +30,14 @@ export class ContactComponent implements OnInit {
       } as ContactSubmission)
         .subscribe(
           (value) => {
-            this.submissionAttempted = true;
-            this.submissionSuccessful = true;
+            if (value.ok) {
+              this.submissionStatus = SubmissionStatus.Succeeded;
+            } else {
+              this.submissionStatus = SubmissionStatus.Failed;
+            }
           },
-          (error) => {
-            this.submissionAttempted = true;
-            this.submissionSuccessful = false;
+          () => {
+            this.submissionStatus = SubmissionStatus.Failed;
           });
     }
   }

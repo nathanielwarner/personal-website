@@ -2,11 +2,6 @@ version: '3.0'
 
 services:
 
-  ng-app:
-    build: ng-frontend
-    volumes:
-      - ng-dist:/application/ng-frontend/dist/ng-frontend
-
   database:
     image: 'mongo:4.2.7'
     environment:
@@ -19,20 +14,12 @@ services:
       - "${MONGO_PORT}:27017"
 
   webserver:
-    build: express-server
+    build: webserver
     environment:
       - MONGO_INITDB_DATABASE
       - MONGO_INITDB_ROOT_USERNAME
       - MONGO_INITDB_ROOT_PASSWORD
-    volumes:
-      - ng-dist:/application/ng-frontend/dist/ng-frontend
     ports:
       - "${EXPRESS_PORT}:3000"
-    depends_on:
-      - ng-app
-      - database
     links:
       - database
-
-volumes:
-  ng-dist:

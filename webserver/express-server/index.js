@@ -3,15 +3,13 @@ const compression = require('compression');
 const MongoClient = require('mongodb').MongoClient;
 const bodyParser = require('body-parser');
 
-const dbUrl = 'mongodb://database:27017';
-const dbName = process.env.MONGO_INITDB_DATABASE;
+const dbName = process.env.MONGO_DATABASE;
 
-MongoClient.connect(dbUrl, {
-    useUnifiedTopology: true,
-    auth: {
-        user: process.env.MONGO_INITDB_ROOT_USERNAME,
-        password: process.env.MONGO_INITDB_ROOT_PASSWORD
-    }
+const dbConnUrl = "mongodb+srv://" + process.env.MONGO_USERNAME + ":" + process.env.MONGO_PASSWORD
+    + "@" + process.env.MONGO_SERVER + "/" + dbName + "?retryWrites=true&w=majority";
+
+MongoClient.connect(dbConnUrl, {
+    useNewUrlParser: true
 }).then(client => {
     console.log("Connected to db");
     const db = client.db(dbName);

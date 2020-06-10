@@ -4,6 +4,7 @@ services:
 
   database:
     image: 'mongo:4.2.7'
+    restart: always
     environment:
       - MONGO_INITDB_DATABASE
       - MONGO_INITDB_ROOT_USERNAME
@@ -15,6 +16,7 @@ services:
 
   webserver:
     build: webserver
+    restart: always
     environment:
       - MONGO_INITDB_DATABASE
       - MONGO_INITDB_ROOT_USERNAME

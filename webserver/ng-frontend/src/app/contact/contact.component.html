@@ -6,33 +6,35 @@
 <div class="row my-4">
   <div class="col-lg-8 col-md-10 col-sm-12">
     <form #f="ngForm" (ngSubmit)="submitForm(f)">
-      <div class="form-group row">
-        <label for="nameInput" class="col-sm-3 col-form-label">Name</label>
-        <div class="col-sm-9">
-          <input name="nameInput" id="nameInput" type="text" class="form-control" ngModel>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="emailInput" class="col-sm-3 col-form-label">Email Address</label>
-        <div class="col-sm-9">
-          <input name="emailInput" id="emailInput" type="email" class="form-control" ngModel required #emailInput="ngModel">
-          <div *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)" class="alert alert-danger">
-            Email is required
+      <div *ngIf="submissionStatus != subStatType.Succeeded">
+        <div class="form-group row">
+          <label for="nameInput" class="col-sm-3 col-form-label">Name</label>
+          <div class="col-sm-9">
+            <input name="nameInput" id="nameInput" type="text" class="form-control" ngModel>
           </div>
         </div>
-      </div>
-      <div class="form-group row">
-        <label for="messageInput" class="col-sm-3 col-form-label">Your Message</label>
-        <div class="col-sm-9">
-          <textarea name="messageInput" id="messageInput" class="form-control" rows="8" ngModel required #messageInput="ngModel"></textarea>
-          <div *ngIf="messageInput.invalid && (messageInput.dirty || messageInput.touched)" class="alert alert-danger">
-            Message is required
+        <div class="form-group row">
+          <label for="emailInput" class="col-sm-3 col-form-label">Email Address</label>
+          <div class="col-sm-9">
+            <input name="emailInput" id="emailInput" type="email" class="form-control" ngModel required #emailInput="ngModel">
+            <div *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)" class="alert alert-danger">
+              Email is required
+            </div>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-3">
-          <button class="btn btn-primary" type="submit">Submit</button>
+        <div class="form-group row">
+          <label for="messageInput" class="col-sm-3 col-form-label">Your Message</label>
+          <div class="col-sm-9">
+            <textarea name="messageInput" id="messageInput" class="form-control" rows="8" ngModel required #messageInput="ngModel"></textarea>
+            <div *ngIf="messageInput.invalid && (messageInput.dirty || messageInput.touched)" class="alert alert-danger">
+              Message is required
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <button class="btn btn-primary" type="submit">Submit</button>
+          </div>
         </div>
       </div>
       <div *ngIf="submissionStatus == subStatType.InProgress" class="alert alert-info">

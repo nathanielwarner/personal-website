@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CodeCompletionDemoComponent implements OnInit {
 
+  editorOptions = {theme: 'vs-dark', language: 'java', automaticLayout: true};
+  code: string = 'public void openFile(String filename)';
+
   constructor() { }
 
   ngOnInit(): void {

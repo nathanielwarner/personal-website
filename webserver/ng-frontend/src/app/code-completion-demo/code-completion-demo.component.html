@@ -1,1 +1,15 @@
-<p>code-completion-demo works!</p>
+<div class="row my-4">
+  <div class="col-12">
+    <h4><a routerLink="/projects">My Projects</a> > Code Completion Demo</h4>
+  </div>
+</div>
+<div class="row my-4">
+  <div class="col-12">
+    Type some code, and let a Transformer-based machine learning model guess what comes next!
+  </div>
+</div>
+<div class="row my-4">
+  <div class="col-12">
+    <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="code"></ngx-monaco-editor>
+  </div>
+</div>

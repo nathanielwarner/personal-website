@@ -1,15 +1,26 @@
 <div class="row my-4">
   <div class="col-12">
-    <h4><a routerLink="/projects">My Projects</a> > Code Completion Demo</h4>
+    <h4><a routerLink="/projects">My Projects</a> > <b>Code Completion Demo</b></h4>
   </div>
 </div>
 <div class="row my-4">
   <div class="col-12">
-    Type some code, and let a Transformer-based machine learning model guess what comes next!
+    Type some code in Java, and let a Transformer-based machine learning model guess what comes next!
   </div>
 </div>
 <div class="row my-4">
   <div class="col-12">
     <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="code"></ngx-monaco-editor>
+  </div>
+</div>
+<div class="row my-4">
+  <div class="col-12">
+    <button class="btn btn-primary">Generate Completion</button>
+  </div>
+</div>
+<div class="row my-4">
+  <div class="col-12">
+    You can see the code for this project <a href="https://github.com/nathanielwarner/transformer_lang_model">
+    on Github</a>.
   </div>
 </div>

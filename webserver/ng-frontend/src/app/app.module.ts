@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from "@angular/common/http";
+import { MonacoEditorModule } from "ngx-monaco-editor";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { IconsModule } from "./icons/icons.module";
 import { SingleProjectComponent } from './single-project/single-project.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SingleExperienceComponent } from './single-experience/single-experience.component';
+import { CodeCompletionDemoComponent } from './code-completion-demo/code-completion-demo.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { SingleExperienceComponent } from './single-experience/single-experience
     HomeComponent,
     SingleProjectComponent,
     NotFoundComponent,
-    SingleExperienceComponent
+    SingleExperienceComponent,
+    CodeCompletionDemoComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,8 @@ import { SingleExperienceComponent } from './single-experience/single-experience
     NgbModule,
     HttpClientModule,
     IconsModule,
-    FormsModule
+    FormsModule,
+    MonacoEditorModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

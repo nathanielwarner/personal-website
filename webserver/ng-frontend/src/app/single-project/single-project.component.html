@@ -1,12 +1,17 @@
-<div class="row my-5">
-  <div class="col-3">
-    <img src="{{imageUrl}}" class="img-fluid" alt="Image of {{name}}">
-  </div>
-  <div class="col-9">
+<div class="modal modal-content my-4">
+  <div class="modal-header">
     <h4>{{name}}</h4>
-    <p>{{description}}</p>
-    <a *ngIf="tryUrl" type="button" href="{{tryUrl}}" class="btn btn-dark mx-2">Try It</a>
-    <a *ngIf="githubUrl" type="button" href="{{githubUrl}}"
-       class="btn btn-outline-dark mx-2"><i-feather name="github" class="mx-1"></i-feather>See The Code</a>
+  </div>
+  <div class="modal-body">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3">
+          <img src="{{imageUrl}}" class="img-fluid my-2 my-sm-0" alt="Image of {{name}}">
+        </div>
+        <div class="col-sm-9">
+          <ng-content></ng-content>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

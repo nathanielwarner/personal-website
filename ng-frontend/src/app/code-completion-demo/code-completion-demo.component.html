@@ -15,7 +15,16 @@
 </div>
 <div class="row my-4">
   <div class="col-12">
-    <button class="btn btn-primary">Generate Completion</button>
+    <button class="btn btn-primary" (click)="complete()">Generate Completion</button>
+    <div *ngIf="codeCompletionStatus == codeComplStatType.InProgress" class="alert alert-info">
+      Please Wait...
+    </div>
+    <div *ngIf="codeCompletionStatus == codeComplStatType.Succeeded" class="alert alert-success">
+      Success
+    </div>
+    <div *ngIf="codeCompletionStatus == codeComplStatType.Failed" class="alert alert-danger">
+      Failed
+    </div>
   </div>
 </div>
 <div class="row my-4">

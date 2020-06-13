@@ -8,7 +8,7 @@ import { ContactSubmission } from "./contact-submission";
 })
 export class ContactSubmissionService {
 
-  submissionUrl = 'api/contactSubmission'
+  submissionUrl = 'api/contactSubmission';
 
   httpOptions = {
     headers: new HttpHeaders({'Content_Type': 'application/json'})

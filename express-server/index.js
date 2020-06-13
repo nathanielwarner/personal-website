@@ -2,11 +2,14 @@ const express = require('express');
 const compression = require('compression');
 const MongoClient = require('mongodb').MongoClient;
 const bodyParser = require('body-parser');
+const axios = require('axios');
 
 const dbName = process.env.MONGO_DATABASE;
 
 const dbConnUrl = "mongodb+srv://" + process.env.MONGO_USERNAME + ":" + process.env.MONGO_PASSWORD
     + "@" + process.env.MONGO_SERVER + "/" + dbName + "?retryWrites=true&w=majority";
+
+const codeCompletionUrl = process.env.CODE_COMPLETION_URL;
 
 MongoClient.connect(dbConnUrl, {
     useNewUrlParser: true
@@ -16,7 +19,7 @@ MongoClient.connect(dbConnUrl, {
 
     const contSubColl = db.collection('contact-submissions');
 
-    const port = 3000;
+    const port = process.env.PORT;
     const app_folder = '../ng-frontend/dist/ng-frontend';
 
     const app = express();
@@ -37,7 +40,22 @@ MongoClient.connect(dbConnUrl, {
             .catch(err => {
                 res.status(500).send(err);
             });
-    })
+    });
+
+    app.post('/api/codeCompletion', (req, res) => {
+        console.log(req.body);
+        axios.post(codeCompletionUrl, req.body).then((value => {
+            if (value.status === 200) {
+                console.log(value.data);
+                res.status(200).send(value.data);
+            } else {
+                res.status(500).send();
+            }
+        })).catch(err => {
+            console.error(err);
+            res.status(500).send();
+        })
+    });
 
     app.listen(port, () => console.log(`Express server listening at localhost:${port}`))
 

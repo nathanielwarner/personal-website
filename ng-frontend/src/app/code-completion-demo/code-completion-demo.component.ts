@@ -16,7 +16,7 @@ export enum CodeCompletionStatus {
 })
 export class CodeCompletionDemoComponent implements OnInit {
 
-  editorOptions = {theme: 'vs-dark', language: 'java', automaticLayout: true};
+  editorOptions = {theme: 'vs-dark', language: 'java', automaticLayout: true, tabSize: 4, insertSpaces: false};
   code: string = 'public void openFile(String filename)';
   codeComplStatType = CodeCompletionStatus;
   codeCompletionStatus: CodeCompletionStatus = CodeCompletionStatus.None;

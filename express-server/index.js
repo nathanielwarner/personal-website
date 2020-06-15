@@ -12,14 +12,15 @@ const dbConnUrl = "mongodb+srv://" + process.env.MONGO_USERNAME + ":" + process.
 const codeCompletionUrl = process.env.CODE_COMPLETION_URL;
 
 MongoClient.connect(dbConnUrl, {
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 }).then(client => {
     console.log("Connected to db");
     const db = client.db(dbName);
 
     const contSubColl = db.collection('contact-submissions');
 
-    const port = process.env.PORT;
+    const port = 3000;
     const app_folder = '../ng-frontend/dist/ng-frontend';
 
     const app = express();
@@ -43,21 +44,27 @@ MongoClient.connect(dbConnUrl, {
     });
 
     app.post('/api/codeCompletion', (req, res) => {
-        console.log(req.body);
-        axios.post(codeCompletionUrl, req.body).then((value => {
-            if (value.status === 200) {
-                console.log(value.data);
-                res.status(200).send(value.data);
-            } else {
-                res.status(500).send();
+        axios.post(codeCompletionUrl, req.body.prompt, {
+            headers: {
+                'Content-type': 'text/plain',
+                'Accept': 'text/plain'
             }
-        })).catch(err => {
-            console.error(err);
-            res.status(500).send();
         })
+            .then((value => {
+                if (value.status === 200) {
+                    const completion = value.data.replace(/\\n/g, '\n').replace(/\\t/g, '\t');
+                    res.status(200).send({completion: completion});
+                } else {
+                    res.status(500).send();
+                }
+            }))
+            .catch(err => {
+                console.error(err);
+                res.status(500).send();
+            });
     });
 
-    app.listen(port, () => console.log(`Express server listening at localhost:${port}`))
+    app.listen(port, () => console.log(`Express server listening at port ${port}`))
 
 })
 .catch(console.error);

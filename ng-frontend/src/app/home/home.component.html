@@ -17,11 +17,17 @@
       I'm a graduate of Carleton College, and a software engineer with experience in
       <b>full-stack web development</b> and <b>machine learning</b>.
     </p>
+    <p>
+      Check out my <a routerLink="/projects">projects</a> and <a routerLink="/experience">employment experience</a>,
+      and <a routerLink="/contact">get in touch</a> if you like!
+    </p>
   </div>
 </div>
 <div class="row my-5">
   <div class="col-12 col-sm-6 col-lg-4">
-    <div class="card">
+    <div class="card m-3 m-sm-0" [ngClass]="{'shadow': isHoveringOn('carletonian')}"
+         (mouseenter)="updateFeaturedHover('carletonian')"
+         (mouseleave)="updateFeaturedHover('none')">
       <img class="card-img-top" src="../../assets/carletonian-screencapture.png" alt="The Carletonian Website">
       <div class="card-body">
         <h5 class="card-title">The <em>Carletonian</em></h5>
@@ -35,7 +41,9 @@
     </div>
   </div>
   <div class="col-12 col-sm-6 col-lg-4">
-    <div class="card">
+    <div class="card m-3 m-sm-0" [ngClass]="{'shadow': isHoveringOn('code-completion')}"
+         (mouseenter)="updateFeaturedHover('code-completion')"
+         (mouseleave)="updateFeaturedHover('none')">
       <img class="card-img-top" src="../../assets/code-stock.jpg" alt="Code Completion">
       <div class="card-body">
         <h5 class="card-title">Code Autocomplete</h5>
@@ -45,6 +53,21 @@
         </p>
         <a type="button" routerLink="/projects/code-completion-demo"
            class="btn btn-primary mx-2 stretched-link">Try It</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-sm-6 col-lg-4">
+    <div class="card m-3 m-sm-0" [ngClass]="{'shadow': isHoveringOn('personal-website')}"
+         (mouseenter)="updateFeaturedHover('personal-website')"
+         (mouseleave)="updateFeaturedHover('none')">
+      <img class="card-img-top" src="../../assets/website.png" alt="Code Completion">
+      <div class="card-body">
+        <h5 class="card-title">Personal Website</h5>
+        <p class="card-text">
+          The website you're on right now! I used the MEAN stack with a microservices architecture.
+        </p>
+        <a type="button" href="https://github.com/nathanielwarner/personal-website" target="_blank"
+           class="btn btn-dark mx-2 stretched-link"><i-feather name="github" class="mx-2"></i-feather>See The Code</a>
       </div>
     </div>
   </div>

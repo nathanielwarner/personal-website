@@ -1,7 +1,11 @@
 <div class="modal-content my-4">
   <div class="modal-header flex-row">
     <div class="col-9">
-      <h4><strong>{{position}}</strong> at <a href="{{orgLink}}">{{orgName}}</a></h4>
+      <h4><strong>{{position}}</strong> at
+        <a href="{{orgLink}}" target="_blank">
+          <i-feather name="external-link" class="mx-1"></i-feather>{{orgName}}
+        </a>
+      </h4>
     </div>
     <div class="col-3">
       <em>{{startDate}} - {{endDate}}</em>

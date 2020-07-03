@@ -10,6 +10,7 @@ const dbConnUrl = "mongodb+srv://" + process.env.MONGO_USERNAME + ":" + process.
     + "@" + process.env.MONGO_SERVER + "/" + dbName + "?retryWrites=true&w=majority";
 
 const codeCompletionUrl = process.env.CODE_COMPLETION_URL;
+const codeSummarizationUrl = process.env.CODE_SUMMARIZATION_URL;
 
 MongoClient.connect(dbConnUrl, {
     useNewUrlParser: true,
@@ -63,6 +64,26 @@ MongoClient.connect(dbConnUrl, {
                 res.status(500).send();
             });
     });
+
+    app.post('/api/codeSummarization', (req, res) => {
+        axios.post(codeSummarizationUrl, {in_code: req.body.code}, {
+            headers: {
+                'Content-type': 'application/json',
+                'Accept': 'application/json'
+            }
+        })
+            .then((value => {
+                if (value.status === 200) {
+                    res.status(200).send({summarization: value.data.summarization});
+                } else {
+                    res.status(500).send();
+                }
+            }))
+            .catch(err => {
+                console.error(err);
+                res.status(500).send();
+            });
+    })
 
     app.listen(port, () => console.log(`Express server listening at port ${port}`))
 

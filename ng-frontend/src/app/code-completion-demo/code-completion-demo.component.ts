@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { CodeCompletionService } from "../code-completion.service";
+import { CodeCompletionService } from '../code-completion.service';
 
-export enum CodeCompletionStatus {
+export enum ProcessingStatus {
   None,
   InProgress,
   Failed,
@@ -17,24 +17,37 @@ export enum CodeCompletionStatus {
 export class CodeCompletionDemoComponent implements OnInit {
 
   editorOptions = {theme: 'vs-dark', language: 'java', automaticLayout: true, tabSize: 4, insertSpaces: false};
-  code: string = 'public void openFile(String filename)';
-  codeComplStatType = CodeCompletionStatus;
-  codeCompletionStatus: CodeCompletionStatus = CodeCompletionStatus.None;
+  code = 'public void openFile(String filename)';
+  summarization: null | string = null;
+  processingStatusEnum = ProcessingStatus;
+  processingStatus: ProcessingStatus = ProcessingStatus.None;
 
   constructor(private codeCompletionService: CodeCompletionService) { }
 
   ngOnInit(): void {}
 
   complete(): void {
-    this.codeCompletionStatus = CodeCompletionStatus.InProgress;
+    this.processingStatus = ProcessingStatus.InProgress;
     this.codeCompletionService.getCompletion(this.code).subscribe((response => {
       console.log(response);
       this.code += response.completion;
-      this.codeCompletionStatus = CodeCompletionStatus.Succeeded;
+      this.processingStatus = ProcessingStatus.Succeeded;
     }), err => {
       console.log(err);
-      this.codeCompletionStatus = CodeCompletionStatus.Failed;
-    })
+      this.processingStatus = ProcessingStatus.Failed;
+    });
+  }
+
+  summarize(): void {
+    this.processingStatus = ProcessingStatus.InProgress;
+    this.codeCompletionService.getSummarization(this.code).subscribe((response => {
+      console.log(response);
+      this.summarization = response.summarization;
+      this.processingStatus = ProcessingStatus.Succeeded;
+    }), err => {
+      console.log(err);
+      this.processingStatus = ProcessingStatus.Failed;
+    });
   }
 
 }

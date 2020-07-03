@@ -3,14 +3,24 @@
     <h1>My Projects</h1>
   </div>
 </div>
-<app-single-project name="Transformer-based Code Autocomplete" imageUrl="../../assets/universal_transformer.png">
-  <p>Write some code in Java, and let a machine learning model guess what comes next!
-  Trained on 454,450 Java methods, this model uses the Universal Transformer architecture,
-    which repeatedly applies the same Transformer block to iteratively refine context.</p>
+<app-single-project name="Code Completion and Summarization" imageUrl="../../assets/universal_transformer.png">
+  <p>Type some code, and let a machine learning model
+  guess what comes next. Then, let another model guess what your code does!
+  Trained on 1.8 million Java methods, these models use the Universal Transformer architecture,
+  which repeatedly applies the same Transformer block to iteratively refine context.</p>
   <a type="button" routerLink="/projects/code-completion-demo"
      class="btn btn-primary mx-2">Try It</a>
-  <a type="button" href="https://github.com/nathanielwarner/transformer_lang_model" target="_blank"
-     class="btn btn-dark mx-2"><i-feather name="github" class="mx-1"></i-feather>See The Code</a>
+  <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown" placement="top-right">
+    <button class="btn btn-outline-primary mr-2" id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">See The Code</button>
+    <div ngbDropdownMenu aria-labelledby="dropdownManual">
+      <a type="button" ngbDropdownItem href="https://github.com/nathanielwarner/transformer_lang_model" target="_blank">
+        <i-feather name="external-link" class="mx-1"></i-feather>Code Completion
+      </a>
+      <a type="button" ngbDropdownItem href="https://github.com/nathanielwarner/code_summarization_transformer" target="_blank">
+        <i-feather name="external-link" class="mx-1"></i-feather>Code Summarization
+      </a>
+    </div>
+  </div>
 </app-single-project>
 <app-single-project
   name="Automated Code Retrieval and Summarization"

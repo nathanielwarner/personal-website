@@ -1,11 +1,12 @@
 <div class="row my-4">
   <div class="col-12">
-    <h4><a routerLink="/projects">My Projects</a> > <b>Code Completion Demo</b></h4>
+    <h4><a routerLink="/projects">My Projects</a> > <b>Code Completion and Summarization</b></h4>
   </div>
 </div>
 <div class="row my-4">
   <div class="col-12">
-    Type some code in Java, and let a Transformer-based machine learning model guess what comes next!
+    Type some code in Java, and let a Transformer-based machine learning model guess what comes next.
+    When you're done, let another model guess what your code does!
   </div>
 </div>
 <div class="row my-4">
@@ -15,23 +16,42 @@
 </div>
 <div class="row my-4">
   <div class="col-12">
-    <button class="btn btn-primary" (click)="complete()">Generate Completion</button>
-    <div *ngIf="codeCompletionStatus == codeComplStatType.InProgress" class="alert alert-info">
+    <div class="btn-group" role="group">
+      <button class="btn btn-primary" (click)="complete()" [disabled]="processingStatus == processingStatusEnum.InProgress">
+        Complete
+      </button>
+      <button class="btn btn-primary" (click)="summarize()" [disabled]="processingStatus == processingStatusEnum.InProgress">
+        Summarize
+      </button>
+    </div>
+  </div>
+</div>
+<div *ngIf="summarization != null" class="row my-4">
+  <div class="col-12">
+    <b>Generated Summary:</b> {{summarization}}
+  </div>
+</div>
+<div *ngIf="processingStatus != processingStatusEnum.None" class="row my-4">
+  <div class="col-12">
+    <div *ngIf="processingStatus == processingStatusEnum.InProgress" class="alert alert-info">
       Please Wait...
     </div>
-    <div *ngIf="codeCompletionStatus == codeComplStatType.Succeeded" class="alert alert-success">
+    <div *ngIf="processingStatus == processingStatusEnum.Succeeded" class="alert alert-success">
       Success
     </div>
-    <div *ngIf="codeCompletionStatus == codeComplStatType.Failed" class="alert alert-danger">
+    <div *ngIf="processingStatus == processingStatusEnum.Failed" class="alert alert-danger">
       Failed
     </div>
   </div>
 </div>
 <div class="row my-4">
   <div class="col-12">
-    You can see the code for this project
+    You can see the code for
     <a href="https://github.com/nathanielwarner/transformer_lang_model" target="_blank">
-      <i-feather name="external-link" class="mx-1"></i-feather>on Github
+      <i-feather name="external-link" class="mx-1"></i-feather>code completion
+    </a> and for
+    <a href="https://github.com/nathanielwarner/code_summarization_transformer" target="_blank">
+      <i-feather name="external-link" class="mx-1"></i-feather>code summarization
     </a>.
   </div>
 </div>

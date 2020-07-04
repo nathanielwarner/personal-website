@@ -74,7 +74,7 @@ MongoClient.connect(dbConnUrl, {
         })
             .then((value => {
                 if (value.status === 200) {
-                    res.status(200).send({summarization: value.data.summarization});
+                    res.status(200).send({summarization: value.data.summary});
                 } else {
                     res.status(500).send();
                 }

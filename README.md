@@ -2,7 +2,7 @@
 
 This is the code for my personal website. It uses the MEAN stack
 (Mongo, Express, Angular, Node.js), and is currently running in
-an autoscaling container on Google Cloud Run.
+an autoscaling container on Google Cloud Run, which accepts requests to https://nathanielwarner.us
 
 ## Front-end
 The front-end for the application, contained in `ng-frontend`,
@@ -25,10 +25,9 @@ served to users by the back-end.
 The back-end, contained in `express-server`, utilizes Express
 to serve the application and respond to user-generated requests.
 Those requests currently take two forms:
-- Code Completion demo requests: Upon receiving the request, 
-the backend makes a request to 
-[another service](https://github.com/nathanielwarner/transformer_lang_model), 
-which is running the PyTorch model.
+- Code Completion and Summarization demo requests: Upon receiving the request, 
+the backend makes a request to the [code completion service](https://github.com/nathanielwarner/transformer_lang_model) or
+the [code summarization service](https://github.com/nathanielwarner/code_summarization_transformer), which run the respective models.
 - Contact form submissions: These are saved in a Mongo database,
 which is currently provided by the MongoDB Atlas service.
 

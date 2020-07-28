@@ -8,15 +8,15 @@
   guess what comes next. Then, let another model guess what your code does!
   Trained on 1.8 million Java methods, these models use the Universal Transformer architecture,
   which repeatedly applies the same Transformer block to iteratively refine context.</p>
-  <a type="button" routerLink="/projects/code-completion-demo"
+  <a role="button" routerLink="/projects/code-completion-demo"
      class="btn btn-primary mx-2">Try It</a>
-  <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown" placement="top-right">
-    <button class="btn btn-outline-primary mr-2" id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">See The Code</button>
-    <div ngbDropdownMenu aria-labelledby="dropdownManual">
-      <a type="button" ngbDropdownItem href="https://github.com/nathanielwarner/transformer_lang_model" target="_blank">
+  <div ngbDropdown placement="top-right" class="d-inline-block">
+    <button class="btn btn-outline-primary mr-2" id="ccsDropup" ngbDropdownToggle>See The Code</button>
+    <div ngbDropdownMenu aria-labelledby="ccsDropup">
+      <a href="https://github.com/nathanielwarner/transformer_lang_model" target="_blank" ngbDropdownItem>
         <i-feather name="external-link" class="mx-1"></i-feather>Code Completion
       </a>
-      <a type="button" ngbDropdownItem href="https://github.com/nathanielwarner/code_summarization_transformer" target="_blank">
+      <a href="https://github.com/nathanielwarner/code_summarization_transformer" target="_blank" ngbDropdownItem>
         <i-feather name="external-link" class="mx-1"></i-feather>Code Summarization
       </a>
     </div>
@@ -30,7 +30,7 @@
   The BVAE is a framework that tries to solve the problems of code retrieval and summarization.
   This project was my group senior project (comps) at Carleton.
   I earned distinction for my contributions.</p>
-  <a type="button" href="https://github.com/max-nathaniel-paul-comps/code-retrieval-and-summarization"
+  <a role="button" href="https://github.com/max-nathaniel-paul-comps/code-retrieval-and-summarization"
      target="_blank" class="btn btn-dark mx-2"><i-feather name="github" class="mx-1"></i-feather>See The Code</a>
 </app-single-project>
 <app-single-project
@@ -39,12 +39,12 @@
   <p>An interactive and responsive showcase of my skills and experience, based on the MEAN stack
     (Mongo, Express, Angular, Node.JS) with a microservice architecture.
     Hosted on Google Cloud Run with Knative.</p>
-  <a type="button" href="https://github.com/nathanielwarner/personal-website" target="_blank"
+  <a role="button" href="https://github.com/nathanielwarner/personal-website" target="_blank"
      class="btn btn-dark mx-2"><i-feather name="github" class="mx-1"></i-feather>See The Code</a>
 </app-single-project>
 <app-single-project
   name="Blackjack"
   imageUrl="../../assets/blackjack.png">
   <p>A simple blackjack game in Java/Graphics2D. Have fun without putting your actual money at risk!</p>
-  <a type="button" href="https://github.com/nathanielwarner/blackjack" target="_blank"
+  <a role="button" href="https://github.com/nathanielwarner/blackjack" target="_blank"
      class="btn btn-primary mx-2"><i-feather name="external-link" class="mx-1"></i-feather>More Info</a>

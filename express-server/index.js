@@ -12,80 +12,99 @@ const dbConnUrl = "mongodb+srv://" + process.env.MONGO_USERNAME + ":" + process.
 const codeCompletionUrl = process.env.CODE_COMPLETION_URL;
 const codeSummarizationUrl = process.env.CODE_SUMMARIZATION_URL;
 
+let contSubColl = null;
+
 MongoClient.connect(dbConnUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true
-}).then(client => {
-    console.log("Connected to db");
-    const db = client.db(dbName);
-
-    const contSubColl = db.collection('contact-submissions');
-
-    const port = 3000;
-    const app_folder = '../ng-frontend/dist/ng-frontend';
-
-    const app = express();
-    app.use(compression());
-    app.use(bodyParser.json());
-
-    app.get('*.*', express.static(app_folder, {maxAge: '1y'}));
-
-    app.get('*', (req, res) =>
-        res.status(200).sendFile(`/`, {root: app_folder})
-    );
-
-    app.post('/api/contactSubmission', (req, res) => {
-        contSubColl.insertOne(req.body)
-            .then(result => {
-                res.status(200).send(result);
-            })
-            .catch(err => {
-                res.status(500).send(err);
-            });
-    });
-
-    app.post('/api/codeCompletion', (req, res) => {
-        axios.post(codeCompletionUrl, req.body.prompt, {
-            headers: {
-                'Content-type': 'text/plain',
-                'Accept': 'text/plain'
-            }
-        })
-            .then((value => {
-                if (value.status === 200) {
-                    const completion = value.data.replace(/\\n/g, '\n').replace(/\\t/g, '\t');
-                    res.status(200).send({completion: completion});
-                } else {
-                    res.status(500).send();
-                }
-            }))
-            .catch(err => {
-                console.error(err);
-                res.status(500).send();
-            });
-    });
-
-    app.post('/api/codeSummarization', (req, res) => {
-        axios.post(codeSummarizationUrl, {in_code: req.body.code}, {
-            headers: {
-                'Content-type': 'application/json',
-                'Accept': 'application/json'
-            }
-        })
-            .then((value => {
-                if (value.status === 200) {
-                    res.status(200).send({summarization: value.data.summary});
-                } else {
-                    res.status(500).send();
-                }
-            }))
-            .catch(err => {
-                console.error(err);
-                res.status(500).send();
-            });
-    })
-
-    app.listen(port, () => console.log(`Express server listening at port ${port}`))
-
 })
-.catch(console.error);
+    .then(client => {
+        console.log("Connected to db");
+        const db = client.db(dbName);
+        contSubColl = db.collection('contact-submissions');
+})
+    .catch(error => {
+        console.log('Failed to connect to db');
+        console.log(error);
+        process.exit(1);
+    });
+    
+const port = 3000;
+const app_folder = '../ng-frontend/dist/ng-frontend';
+
+const app = express();
+app.use(compression());
+app.use(bodyParser.json());
+
+app.get('*.*', express.static(app_folder, {maxAge: '1y'}));
+
+app.get('*', (req, res) =>
+    res.status(200).sendFile(`/`, {root: app_folder})
+);
+
+const submitToContSub = (req, res) => {
+    contSubColl.insertOne(req.body)
+        .then(result => {
+            res.status(200).send(result);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).send(err);
+        });
+}
+
+const checkAndSubmitToContSub = (req, res) => {
+    if (contSubColl) {
+        submitToContSub(req, res);
+    } else {
+        console.log('Database not available yet, waiting...');
+        setTimeout(() => checkAndSubmitToContSub(req, res), 1000);
+    }
+}
+
+app.post('/api/contactSubmission', (req, res) => {
+    checkAndSubmitToContSub(req, res);
+});
+
+app.post('/api/codeCompletion', (req, res) => {
+    axios.post(codeCompletionUrl, req.body.prompt, {
+        headers: {
+            'Content-type': 'text/plain',
+            'Accept': 'text/plain'
+        }
+    })
+        .then((value => {
+            if (value.status === 200) {
+                const completion = value.data.replace(/\\n/g, '\n').replace(/\\t/g, '\t');
+                res.status(200).send({completion: completion});
+            } else {
+                res.status(500).send();
+            }
+        }))
+        .catch(err => {
+            console.error(err);
+            res.status(500).send();
+        });
+});
+
+app.post('/api/codeSummarization', (req, res) => {
+    axios.post(codeSummarizationUrl, {in_code: req.body.code}, {
+        headers: {
+            'Content-type': 'application/json',
+            'Accept': 'application/json'
+        }
+    })
+        .then((value => {
+            if (value.status === 200) {
+                res.status(200).send({summarization: value.data.summary});
+            } else {
+                res.status(500).send();
+            }
+        }))
+        .catch(err => {
+            console.error(err);
+            res.status(500).send();
+        });
+})
+
+app.listen(port, () => console.log(`Express server listening at port ${port}`));

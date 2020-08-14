@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { FeatherModule } from "angular-feather";
-import { Github, Linkedin, AlertTriangle, ExternalLink } from "angular-feather/icons";
+import { Github, Linkedin, AlertTriangle, ExternalLink, DownloadCloud } from "angular-feather/icons";
 
 const icons = {
-  Github, Linkedin, AlertTriangle, ExternalLink
+  Github, Linkedin, AlertTriangle, ExternalLink, DownloadCloud
 };
 
 @NgModule({

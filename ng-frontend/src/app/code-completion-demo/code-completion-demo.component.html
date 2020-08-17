@@ -40,8 +40,14 @@
       Success
     </div>
     <div *ngIf="processingStatus == processingStatusEnum.Failed" class="alert alert-danger">
-      Failed
+      Failed. Please try again later...
     </div>
+  </div>
+</div>
+<div class="row my-4">
+  <div class="col-12">
+    The code completion model uses PyTorch, while the code summarization model uses TensorFlow.
+    Each is handled by a separate microservice.
   </div>
 </div>
 <div class="row my-4">

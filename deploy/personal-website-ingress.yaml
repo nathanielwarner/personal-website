@@ -1,0 +1,12 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: personal-website-ingress
+spec:
+  rules:
+  - host: nathanielwarner.us
+    http:
+      paths:
+      - backend:
+          serviceName: personal-website-svc
+          servicePort: 80

@@ -4,7 +4,7 @@ metadata:
   name: personal-website-ingress
 spec:
   rules:
-  - host: nathanielwarner.us
+  - host: nathanielwarner.net
     http:
       paths:
       - backend:

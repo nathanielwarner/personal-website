@@ -32,7 +32,11 @@ spec:
           protocol: TCP
         resources:
           requests:
-            cpu: "0.1"
+            memory: "100Mi"
+            cpu: "100m"
+          limits:
+            memory: "250Mi"
+            cpu: "200m"
         startupProbe:
           tcpSocket:
             port: website-port

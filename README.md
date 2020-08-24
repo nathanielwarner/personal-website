@@ -1,8 +1,8 @@
 # Personal Website
 
 This is the code for my personal website. It uses the MEAN stack
-(Mongo, Express, Angular, Node.js), and is currently running in
-an autoscaling container on Google Cloud Run, which accepts requests to https://nathanielwarner.us
+(Mongo, Express, Angular, Node.js), and is currently deployed using Kubernetes.
+Check it out at https://nathanielwarner.net
 
 ## Front-end
 The front-end for the application, contained in `ng-frontend`,

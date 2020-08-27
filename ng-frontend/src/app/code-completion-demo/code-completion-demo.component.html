@@ -11,7 +11,7 @@
 </div>
 <div class="row my-4">
   <div class="col-12">
-    <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="code"></ngx-monaco-editor>
+    <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="code" (onInit)="onEditorInit($event)"></ngx-monaco-editor>
   </div>
 </div>
 <div class="row my-4">

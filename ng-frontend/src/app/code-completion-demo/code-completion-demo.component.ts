@@ -16,15 +16,20 @@ export enum ProcessingStatus {
 })
 export class CodeCompletionDemoComponent implements OnInit {
 
-  editorOptions = {theme: 'vs-dark', language: 'java', automaticLayout: true, tabSize: 4, insertSpaces: false};
+  editorOptions = {theme: 'vs-dark', language: 'javascript', automaticLayout: true, tabSize: 4, insertSpaces: false};
   code = 'public void openFile(String filename)';
   summarization: null | string = null;
   processingStatusEnum = ProcessingStatus;
   processingStatus: ProcessingStatus = ProcessingStatus.None;
+  formatDocument: any = null;
 
   constructor(private codeCompletionService: CodeCompletionService) { }
 
   ngOnInit(): void {}
+
+  onEditorInit(editor: any): void {
+    this.formatDocument = editor._actions["editor.action.formatDocument"];
+  }
 
   complete(): void {
     this.processingStatus = ProcessingStatus.InProgress;
@@ -36,6 +41,7 @@ export class CodeCompletionDemoComponent implements OnInit {
       console.log(err);
       this.processingStatus = ProcessingStatus.Failed;
     });
+    this.formatDocument.run();
   }
 
   summarize(): void {

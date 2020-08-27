@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from "@angular/common/http";
-import { MonacoEditorModule } from "ngx-monaco-editor";
+import { MonacoEditorModule, NgxMonacoEditorConfig } from "ngx-monaco-editor";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +16,10 @@ import { SingleProjectComponent } from './single-project/single-project.componen
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SingleExperienceComponent } from './single-experience/single-experience.component';
 import { CodeCompletionDemoComponent } from './code-completion-demo/code-completion-demo.component';
+
+const monacoConfig: NgxMonacoEditorConfig = {
+  onMonacoLoad: () => {console.log((<any>window).monaco.languages.getLanguages());}
+};
 
 @NgModule({
   declarations: [
@@ -36,7 +40,7 @@ import { CodeCompletionDemoComponent } from './code-completion-demo/code-complet
     HttpClientModule,
     IconsModule,
     FormsModule,
-    MonacoEditorModule.forRoot()
+    MonacoEditorModule.forRoot(monacoConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]

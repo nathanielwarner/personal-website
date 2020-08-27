@@ -16,7 +16,7 @@ export enum ProcessingStatus {
 })
 export class CodeCompletionDemoComponent implements OnInit {
 
-  editorOptions = {theme: 'vs-dark', language: 'javascript', automaticLayout: true, tabSize: 4, insertSpaces: false};
+  editorOptions = {theme: 'vs-dark', language: 'java'};
   code = 'public void openFile(String filename)';
   summarization: null | string = null;
   processingStatusEnum = ProcessingStatus;

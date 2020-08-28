@@ -17,7 +17,7 @@ export enum ProcessingStatus {
 export class CodeCompletionDemoComponent implements OnInit {
 
   editorOptions = {theme: 'vs-dark', language: 'java', automaticLayout: true, tabSize: 4, insertSpaces: false};
-  code = 'public void openFile(String filename)';
+  code = 'public boolean connect() {\n\ttry {\n\t\tthis._socket = new Socket(this._host, this._port);\n\t\treturn true;\n\t}';
   summarization: null | string = null;
   processingStatusEnum = ProcessingStatus;
   processingStatus: ProcessingStatus = ProcessingStatus.None;

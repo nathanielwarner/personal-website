@@ -4,6 +4,8 @@ const MongoClient = require('mongodb').MongoClient;
 const bodyParser = require('body-parser');
 const axios = require('axios');
 
+const {javaStyle} = require('./style.js');
+
 const dbName = process.env.MONGO_DATABASE;
 
 const dbConnUrl = "mongodb+srv://" + process.env.MONGO_USERNAME + ":" + process.env.MONGO_PASSWORD
@@ -67,7 +69,8 @@ app.post('/api/contactSubmission', (req, res) => {
 });
 
 app.post('/api/codeCompletion', (req, res) => {
-    axios.post(codeCompletionUrl, req.body.prompt, {
+    const prompt = req.body.prompt;
+    axios.post(codeCompletionUrl, prompt, {
         headers: {
             'Content-type': 'text/plain',
             'Accept': 'text/plain'
@@ -75,7 +78,7 @@ app.post('/api/codeCompletion', (req, res) => {
     })
         .then((value => {
             if (value.status === 200) {
-                const completion = value.data.replace(/\\n/g, '\n').replace(/\\t/g, '\t');
+                const completion = javaStyle(prompt, value.data);
                 res.status(200).send({completion: completion});
             } else {
                 res.status(500).send();

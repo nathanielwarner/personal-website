@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: personal-website-container
-        image: nathaniel515/personal_website:1.2
+        image: nathaniel515/personal_website:1.3
         envFrom:
         - configMapRef:
             name: personal-website-config

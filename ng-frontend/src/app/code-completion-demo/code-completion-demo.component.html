@@ -9,23 +9,9 @@
     When you're done, let another model guess what your code does!
   </div>
 </div>
-<div class="row my-4">
-  <div class="col-12">
-    <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="code"></ngx-monaco-editor>
-  </div>
-</div>
-<div class="row my-4">
-  <div class="col-12">
-    <div class="btn-group" role="group">
-      <button class="btn btn-primary" (click)="complete()" [disabled]="processingStatus == processingStatusEnum.InProgress">
-        Complete
-      </button>
-      <button class="btn btn-primary" (click)="summarize()" [disabled]="processingStatus == processingStatusEnum.InProgress">
-        Summarize
-      </button>
-    </div>
-  </div>
-</div>
+<p class="my-3">
+  <b>This demo is currently unavailable.</b>
+</p>
 <div *ngIf="summarization != null" class="row my-4">
   <div class="col-12">
     <b>Generated Summary:</b> {{summarization}}

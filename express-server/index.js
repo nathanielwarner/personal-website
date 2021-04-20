@@ -28,7 +28,6 @@ MongoClient.connect(dbConnUrl, {
     .catch(error => {
         console.log('Failed to connect to db');
         console.log(error);
-        process.exit(1);
     });
     
 const port = 3000;

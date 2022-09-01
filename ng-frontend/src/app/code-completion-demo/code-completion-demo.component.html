@@ -9,9 +9,6 @@
     When you're done, let another model guess what your code does!
   </div>
 </div>
-<p class="my-3">
-  <b>This demo is currently unavailable.</b>
-</p>
 <div *ngIf="summarization != null" class="row my-4">
   <div class="col-12">
     <b>Generated Summary:</b> {{summarization}}
@@ -33,17 +30,16 @@
 <div class="row my-4">
   <div class="col-12">
     The code completion model uses PyTorch, while the code summarization model uses TensorFlow.
-    Each is handled by a separate microservice.
   </div>
 </div>
 <div class="row my-4">
   <div class="col-12">
-    You can see the code for
+    You can try out
     <a href="https://github.com/nathanielwarner/transformer_lang_model" target="_blank">
       <i-feather name="external-link" class="mx-1"></i-feather>code completion
-    </a> and for
+    </a> and
     <a href="https://github.com/nathanielwarner/code_summarization_transformer" target="_blank">
       <i-feather name="external-link" class="mx-1"></i-feather>code summarization
-    </a>.
+    </a> yourself!
   </div>
 </div>

@@ -26,8 +26,8 @@ MongoClient.connect(dbConnUrl, {
         contSubColl = db.collection('contact-submissions');
 })
     .catch(error => {
-        console.log('Failed to connect to db');
-        console.log(error);
+        console.error('Failed to connect to db');
+        console.error(error);
     });
     
 const port = 3000;
@@ -44,13 +44,22 @@ app.get('*', (req, res) =>
 );
 
 const submitToContSub = (req, res) => {
+    let doc = req.body;
+    doc.dateTime = new Date();
     contSubColl.insertOne(req.body)
         .then(result => {
-            res.status(200).send(result);
+            if (result.acknowledged) {
+                console.log(`Inserted document with id ${result.insertedId}`);
+                res.status(200).send({ok: true});
+            } else {
+                console.error('Abnormal result:');
+                console.error(result);
+                res.status(500).send({ok: false});
+            }
         })
         .catch(err => {
-            console.log(err);
-            res.status(500).send(err);
+            console.error(err);
+            res.status(500).send({ok: false});
         });
 }
 

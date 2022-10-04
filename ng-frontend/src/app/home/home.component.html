@@ -29,6 +29,21 @@
 </div>
 <div class="row my-5">
   <div class="col-12 col-sm-6 col-lg-4">
+    <div class="card m-3 m-sm-0" [ngClass]="{'shadow': isHoveringOn('balletnova')}"
+         (mouseenter)="updateFeaturedHover('balletnova')"
+         (mouseleave)="updateFeaturedHover('none')">
+      <img class="card-img-top" src="../../assets/balletnova-screencapture.png" alt="BalletNova Center for Dance Website">
+      <div class="card-body">
+        <h5 class="card-title">BalletNova Center for Dance</h5>
+        <p class="card-text">
+          I created a new website and backend system for BalletNova Center for Dance.
+        </p>
+        <a role="button" href="https://balletnova.org" target="_blank"
+           class="btn btn-primary mx-2 stretched-link"><i-feather name="external-link" class="mx-1"></i-feather>See It</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-sm-6 col-lg-4">
     <div class="card m-3 m-sm-0" [ngClass]="{'shadow': isHoveringOn('carletonian')}"
          (mouseenter)="updateFeaturedHover('carletonian')"
          (mouseleave)="updateFeaturedHover('none')">
@@ -44,7 +59,7 @@
       </div>
     </div>
   </div>
-  <div class="col-12 col-sm-6 col-lg-4">
+  <!-- <div class="col-12 col-sm-6 col-lg-4">
     <div class="card m-3 m-sm-0" [ngClass]="{'shadow': isHoveringOn('code-completion')}"
          (mouseenter)="updateFeaturedHover('code-completion')"
          (mouseleave)="updateFeaturedHover('none')">
@@ -59,7 +74,7 @@
            class="btn btn-primary mx-2 stretched-link">Try It</button>
       </div>
     </div>
-  </div>
+  </div> -->
   <div class="col-12 col-sm-6 col-lg-4">
     <div class="card m-3 m-sm-0" [ngClass]="{'shadow': isHoveringOn('flightgear-photoscenery')}"
          (mouseenter)="updateFeaturedHover('flightgear-photoscenery')"

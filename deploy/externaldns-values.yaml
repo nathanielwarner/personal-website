@@ -1,8 +1,0 @@
-rbac:
-  create: true
-provider: digitalocean
-digitalocean:
-  apiToken: redacted
-interval: "1m"
-policy: sync
-domainFilters: ['nathanielwarner.net']

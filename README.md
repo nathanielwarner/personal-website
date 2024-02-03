@@ -40,12 +40,12 @@ docker run -p 3000:3000 --env-file .env <image_id>
 ```
 
 ### Without Docker
-You'll need a recent version of Node installed. (Tested compatible with 12.18.0)
+You'll need [nodenv](https://github.com/nodenv/nodenv) installed, or you can manually install
+the correct version of Node.js as specified in `.node-version`.
 ```
-npm install -g @angular/cli
 cd ng-frontend
 npm install
-ng build --configuration=production
+npm run build
 cd ../express-server
 npm install
 <ENV_VARS_FROM_.ENV> npm start

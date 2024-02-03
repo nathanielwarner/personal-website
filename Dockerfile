@@ -1,4 +1,4 @@
-FROM node:14
+FROM node:16
 RUN npm install -g @angular/cli
 COPY ./ng-frontend/package*.json /application/ng-frontend/
 RUN cd /application/ng-frontend && npm install

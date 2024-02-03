@@ -4,5 +4,3 @@
 .env.prod
 *.password
 .apiToken
-.idea/
-.angular/

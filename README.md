@@ -1,8 +1,8 @@
 # Personal Website
 
-This is the code for my personal website. It uses the MEAN stack
-(Mongo, Express, Angular, Node.js), and is currently deployed on Heroku.
-Check it out at https://www.nathanielwarner.net
+This is the code for my personal website, which uses the MEAN stack
+(Mongo, Express, Angular, Node.js).
+Check it out at [nathanielwarner.net](https://www.nathanielwarner.net)
 
 ## Front-end
 The front-end for the application, contained in `ng-frontend`,

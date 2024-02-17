@@ -50,3 +50,8 @@ cd ../express-server
 npm install
 <ENV_VARS_FROM_.ENV> npm start
 ```
+
+## Deployment
+
+Because of the Dockerfile, there are many options for deployment.
+Currently, it is deployed to Heroku.

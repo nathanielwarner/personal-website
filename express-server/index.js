@@ -46,7 +46,8 @@ app.get('*', (req, res) =>
 const submitToContSub = (req, res) => {
     let doc = req.body;
     doc.dateTime = new Date();
-    contSubColl.insertOne(req.body)
+    doc.ipAddress = req.header('x-forwarded-for') || req.socket.remoteAddress;
+    contSubColl.insertOne(doc)
         .then(result => {
             if (result.acknowledged) {
                 console.log(`Inserted document with id ${result.insertedId}`);
